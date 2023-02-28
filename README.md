@@ -2,6 +2,7 @@
 ![Logo](https://brands.home-assistant.io/_/openweathermap/logo.png)
 
 <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/2560px-Nextjs-logo.svg.png' width='600' height='300' />
+
 # 6Day of Weather
 
 An OpenWeatherAPI Project built on
