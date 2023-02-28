@@ -4,6 +4,7 @@ import axios from 'axios'
 import Image from 'next/image'
 
 
+
 export default function Home() {
 
   const apiKey = process.env.NEXT_PUBLIC_API_KEY
@@ -62,19 +63,19 @@ export default function Home() {
           }
   
           if (weather.weather[0].main == 'Clouds'){
-            icon = '/default/icons/broken-clouds.png'
+            icon = '/myicons/icons/cloudy.png'
           } else if (weather.weather[0].main == 'Clear'){
-            icon = '/default/icons/clear-sky.png'
+            icon = '/myicons/icons/clear-day.png'
           } else if (weather.weather[0].main == 'Atmosphere'){
-            icon = '/default/icons/mist.png'
+            icon = '/myicons/icons/fog.png'
           } else if (weather.weather[0].main == 'Rain'){
-            icon = '/default/icons/rain.png'
+            icon = '/myicons/icons/heavy-showers.png'
           } else if (weather.weather[0].main == 'Drizzle'){
-            icon = '/default/icons/shower-rain.png'
+            icon = '/myicons/icons/showers.png'
           } else if (weather.weather[0].main == 'Snow'){
-            icon = '/default/icons/snow.png'
+            icon = '/myicons/icons/snow.png'
           } else if (weather.weather[0].main == 'Thunderstorm'){
-            icon = '/default/icons/thunderstorm.png'
+            icon = '/myicons/icons/thunderstorm-snow.png'
           }
   
           var now = new Date(weather.dt_txt)
@@ -82,28 +83,28 @@ export default function Home() {
           var day = days[now.getDay()]
           
           return (
-            <div
-              key={i}
-            >
-              <Image
-                src={icon}
-                alt={icon}
-                width={180}
-                height={180}
-                priority
-              />
-              <p>
-                {day} <br/> {month} {weather.dt_txt.substr(8,2)}, {weather.dt_txt.substr(0,4)}
-              </p>
-              <div>{weather.main.temp.toFixed(1)} </div>
-              <div>{weather.weather[0].main} </div>
-            </div>
+              <div className='font-neuton bg-black text-white flex items-center justify-center rounded-xl p-4 '>
+                  <Image
+                    src={icon}
+                    alt={icon}
+                    width={180}
+                    height={180}
+                    priority
+                  />
+                <div className='flex flex-col'>
+                  <p>
+                    {day} <br/> {month} {weather.dt_txt.substr(8,2)}, {weather.dt_txt.substr(0,4)}
+                  </p>
+                  <p>{weather.main.temp.toFixed(1)}°</p>
+                  <p>{weather.weather[0].main} </p>
+                </div> 
+              </div>
           )
         }
 
       })
 
-      console.log(weatherData)
+      console.log(weatherData, 'weather data')
       setData(weatherData)
     } catch (e) {
       console.log(e)
@@ -132,11 +133,24 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <div>
-          <h1>Vancouver, BC Weather</h1>
-          <h3>Last Updated: {date}</h3>
-          {data}
+      <main className='font-neuton h-screen flex justify-start items-center flex-col'>
+        <div className='flex h-full justify-evenly items-center flex-col'>
+          <div className='flex flex-col justify-center items-center text-center'>
+            <h1 className='text-8xl'>Vancouver, BC Weather</h1>
+            <h3>Last Updated: {date}</h3>
+          </div>
+          <div className='grid grid-rows-1 grid-cols-3 gap-2'>
+            {data &&
+              data.map((div, i) => {
+                console.log(div)
+                return (
+
+                  div
+
+                )
+              })
+            }
+          </div>
         </div>
       </main>
 
